@@ -1,0 +1,175 @@
+<?php
+
+class ChartJS {
+    
+    static $AnoAtual;
+    static $strLabels = '"JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"';
+        $strMetas = '15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000';
+        $strPropostas = implode(', ', $arrPropostas);
+        $strContratos = implode(', ', $arrContratos);
+            
+                function MostrarGrafico() {
+
+        $Data = getdate();
+        $AnoAtual = $Data['year'];
+
+        $Read = new Read;
+        $Read->FullRead("SELECT prop_invest, Month(prop_inicio) as Mes, Year(prop_inicio) as Ano, prop_status FROM propostas WHERE Year(prop_inicio) = {$AnoAtual}");
+
+        for ($i = 0, $arrPropostas = []; $i < 12; $i++):
+            $arrPropostas[$i] = 0;
+        endfor;
+
+        for ($i = 0, $arrContratos = []; $i < 12; $i++):
+            $arrContratos[$i] = 0;
+        endfor;
+
+        for ($i = 0; $i < $Read->getRowCount(); $i++):
+            $Mes = $Read->getResult()[$i]['Mes'];
+            $Status = $Read->getResult()[$i]['prop_status'];
+            switch ($Mes):
+                case 1:
+                    if ($Status == 0):
+                        $arrPropostas[0] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[0] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 2:
+                    if ($Status == 0):
+                        $arrPropostas[1] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[1] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 3:
+                    if ($Status == 0):
+                        $arrPropostas[2] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[2] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 4:
+                    if ($Status == 0):
+                        $arrPropostas[3] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[3] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 5:
+                    if ($Status == 0):
+                        $arrPropostas[4] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[4] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 6:
+                    if ($Status == 0):
+                        $arrPropostas[5] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[5] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 7:
+                    if ($Status == 0):
+                        $arrPropostas[6] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[6] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 8:
+                    if ($Status == 0):
+                        $arrPropostas[7] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[7] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 9:
+                    if ($Status == 0):
+                        $arrPropostas[8] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[8] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 10:
+                    if ($Status == 0):
+                        $arrPropostas[9] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[9] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 11:
+                    if ($Status == 0):
+                        $arrPropostas[10] += intval($Read->getResult()[$i]['prop_invest']);
+                    else: $arrContratos[10] += intval($Read->getResult()[$i]['prop_invest']);
+                    endif;
+                    break;
+
+                case 12:
+                    if ($Status == 0):
+                        $arrPropostas[11] += $Read->getResult()[$i]['prop_invest'];
+                    else: $arrContratos[11] += $Read->getResult()[$i]['prop_invest'];
+                    endif;
+                    break;
+                default :
+                    echo 'Erro Procure Ajuda!';
+                    exit();
+            endswitch;
+        endfor;
+
+        $strLabels = '"JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"';
+        $strMetas = '15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000, 15000';
+        $strPropostas = implode(', ', $arrPropostas);
+        $strContratos = implode(', ', $arrContratos);
+
+        $Cor1 = '191, 4, 17';
+        $Cor2 = '254, 238, 0';
+        $Cor3 = '0, 144, 69';
+
+        echo "var lineChartData = {" .
+        "labels: [$strLabels], " .
+        "datasets: [" .
+        "{label: 'METAS', " .
+        "fillColor: 'rgba($Cor1, 0.3)', " .
+        "strokeColor: 'rgba($Cor1,1)', " .
+        "pointColor: 'rgba($Cor1, 1)', " .
+        "pointStrokeColor: 'rgba($Cor1, 1)', " .
+        "pointHighlightFill: 'rgba($Cor1, 1)', " .
+        "pointHighlightStroke: 'rgba($Cor1, 1)', " .
+        "data: [$strMetas]}, " .
+        "{label: 'PROPOSTAS', " .
+        "fillColor: 'rgba($Cor2, 0.3)', " .
+        "strokeColor: 'rgba($Cor2,1)', " .
+        "pointColor: 'rgba($Cor2, 1)', " .
+        "pointStrokeColor: 'rgba($Cor2, 1)', " .
+        "pointHighlightFill: 'rgba($Cor2, 1)', " .
+        "pointHighlightStroke: 'rgba($Cor2, 1)', " .
+        "data: [$strPropostas]}, " .
+        "{label: 'CONTRATOS', " .
+        "fillColor: 'rgba($Cor3, 0.3)', " .
+        "strokeColor: 'rgba($Cor3,1)', " .
+        "pointColor: 'rgba($Cor3, 1)', " .
+        "pointStrokeColor: 'rgba($Cor3, 1)', " .
+        "pointHighlightFill: 'rgba($Cor3, 1)', " .
+        "pointHighlightStroke: 'rgba($Cor3, 1)', " .
+        "data: [$strContratos]}, " .
+        "] };
+    " .
+        "window.onload = function () {" .
+        "var ctx = document.getElementById('canvas').getContext('2d');
+    " .
+        "window.myLine = new Chart(ctx).Line(lineChartData, {" .
+        "responsive: true" .
+        "});
+    " .
+        "};";
+    }
+
+    function TotalPropostas() {
+
+        $totalMetas = "";
+        $totalPropostas = "";
+        $totalContratos = "";
+    }
+
+}

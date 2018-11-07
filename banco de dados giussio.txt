@@ -1,0 +1,433 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.12
+-- http://www.phpmyadmin.net
+--
+-- Host: robb0152.publiccloud.com.br:3306
+-- Generation Time: 02-Maio-2016 às 13:38
+-- Versão do servidor: 5.1.73-rel14.11-log
+-- PHP Version: 5.4.32
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `giussio_bd`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `captadores`
+--
+
+CREATE TABLE IF NOT EXISTS `captadores` (
+  `capt_id` int(11) NOT NULL AUTO_INCREMENT,
+  `capt_cpf` char(19) NOT NULL,
+  `capt_nome` varchar(90) NOT NULL,
+  `capt_sexo` varchar(25) NOT NULL,
+  `capt_nasc` date NOT NULL,
+  `capt_cep` char(9) NOT NULL,
+  `capt_endereco` varchar(90) NOT NULL,
+  `capt_num` char(6) NOT NULL,
+  `capt_comp` varchar(25) NOT NULL,
+  `capt_bairro` varchar(45) NOT NULL,
+  `capt_cidade` varchar(45) NOT NULL,
+  `capt_uf` char(2) NOT NULL,
+  `capt_celular` char(14) NOT NULL,
+  `capt_telefone` char(14) NOT NULL,
+  `capt_email` varchar(45) NOT NULL,
+  `capt_obs` text NOT NULL,
+  PRIMARY KEY (`capt_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- Extraindo dados da tabela `captadores`
+--
+
+INSERT INTO `captadores` (`capt_id`, `capt_cpf`, `capt_nome`, `capt_sexo`, `capt_nasc`, `capt_cep`, `capt_endereco`, `capt_num`, `capt_comp`, `capt_bairro`, `capt_cidade`, `capt_uf`, `capt_celular`, `capt_telefone`, `capt_email`, `capt_obs`) VALUES
+(11, '101.508.268-85', 'Julio Cesar Giussio', 'Masculino', '1971-01-17', '09210-380', 'Rua Acre', '85', 'Apto 203 Bloco 06', 'Vila São Pedro', 'Santo André', 'SP', '(11)9933-29755', '(11)4483-1080_', 'julio@giussiocorretora.com.br', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `condominios`
+--
+
+CREATE TABLE IF NOT EXISTS `condominios` (
+  `cond_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cond_nome` varchar(90) NOT NULL,
+  `cond_cnpj` char(19) NOT NULL,
+  `cond_cep` char(9) NOT NULL,
+  `cond_endereco` varchar(90) NOT NULL,
+  `cond_num` char(6) NOT NULL,
+  `cond_comp` varchar(25) NOT NULL,
+  `cond_bairro` varchar(45) NOT NULL,
+  `cond_cidade` varchar(45) NOT NULL,
+  `cond_uf` char(2) NOT NULL,
+  `cond_telefone` char(14) NOT NULL,
+  `cond_email` varchar(45) NOT NULL,
+  `cond_resp_nome` varchar(90) NOT NULL,
+  `cond_resp_celular` char(14) NOT NULL,
+  `cond_resp_telefone` char(14) NOT NULL,
+  `cond_resp_email` varchar(45) NOT NULL,
+  `cond_obs` text NOT NULL,
+  `cond_id_cont` int(11) NOT NULL,
+  PRIMARY KEY (`cond_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+
+--
+-- Extraindo dados da tabela `condominios`
+--
+
+INSERT INTO `condominios` (`cond_id`, `cond_nome`, `cond_cnpj`, `cond_cep`, `cond_endereco`, `cond_num`, `cond_comp`, `cond_bairro`, `cond_cidade`, `cond_uf`, `cond_telefone`, `cond_email`, `cond_resp_nome`, `cond_resp_celular`, `cond_resp_telefone`, `cond_resp_email`, `cond_obs`, `cond_id_cont`) VALUES
+(9, 'Condomínio 1', '000.000.000/0001-01', '04427-060', 'Travessa Poeta Aprendiz', '552', '', 'Americanópolis', 'São Paulo', 'SP', '(11)1111-11111', 'condominio_1@rv6.com.br', 'Julio', '(11)1111-11111', '(11)1111-11111', 'resp_condominio_1@rv6.com.br', '', 7),
+(14, 'Teste Jonas Condominio', '000.000.000/0001-00', '04917-090', 'Rua Manoel de Medeiros Souza', '1231', '', 'Jardim Souza', 'São Paulo', 'SP', '(11)1111-11111', 'jonas@jonasdeveloper.com', 'Jonas Vieira dos Santos', '(11)1111-11111', '(11)1111-11111', 'jonas@jonasdeveloper.com', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `contas`
+--
+
+CREATE TABLE IF NOT EXISTS `contas` (
+  `cont_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cont_banco` varchar(45) NOT NULL,
+  `cont_agencia` varchar(25) NOT NULL,
+  `cont_agencia_digito` varchar(15) DEFAULT NULL,
+  `cont_cod_cedente` varchar(25) NOT NULL,
+  `cont_conta` varchar(25) NOT NULL,
+  `cont_conta_digito` varchar(10) DEFAULT NULL,
+  `cont_titular` varchar(90) NOT NULL,
+  `cont_cpf` char(19) NOT NULL,
+  `cont_obs` text NOT NULL,
+  `cont_id_prop_cond` varchar(25) NOT NULL,
+  PRIMARY KEY (`cont_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+
+--
+-- Extraindo dados da tabela `contas`
+--
+
+INSERT INTO `contas` (`cont_id`, `cont_banco`, `cont_agencia`, `cont_agencia_digito`, `cont_cod_cedente`, `cont_conta`, `cont_conta_digito`, `cont_titular`, `cont_cpf`, `cont_obs`, `cont_id_prop_cond`) VALUES
+(6, 'Banco Santander (Brasil) S.A.(33)', '2555', '', '25', '55555555', NULL, 'JULIO CESAR GIUSSIO', '101.508.268-85', '', ''),
+(7, 'Banco Bradesco S.A.(237)', '0211', '', '357', '05218101', NULL, 'Mayco A C Vilefort Areias', '357.431.888-07', '', ''),
+(9, 'Banco ABC Brasil S.A.(246)', '666', NULL, '', '666', NULL, 'Teste BB', '666.666.666-66', 'Teste Jonas BB', ''),
+(20, 'Itaú Unibanco S.A.(341)', '111', NULL, '', '111', '1', 'Teste Itau', '111.111.111-11', '', ''),
+(21, 'Banco Bradesco S.A.(237)', '222', '2', '', '222', '2', 'Teste Bradesco', '222.222.222-22', '', ''),
+(22, 'Banco Santander (Brasil) S.A.(33)', '333', NULL, '', '333', NULL, 'Teste Santander', '333.333.333-33', '', ''),
+(23, 'Caixa Econômica Federal(104)', '444', NULL, '', '444', '4', 'Teste Caixa', '444.444.444-44', '', ''),
+(24, 'HSBC Bank Brasil S.A. - Banco Múltiplo(399)', '555', NULL, '', '555', NULL, 'Teste HSBC', '555.555.555-55', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `contratos`
+--
+
+CREATE TABLE IF NOT EXISTS `contratos` (
+  `contratos_id` int(11) NOT NULL AUTO_INCREMENT,
+  `contratos_tipo` varchar(25) NOT NULL,
+  `contratos_data_inicial` date NOT NULL,
+  `contratos_duracao` char(3) NOT NULL,
+  `contratos_data_final` date NOT NULL,
+  `contratos_dia_venc` char(2) NOT NULL,
+  `contratos_juros` float NOT NULL,
+  `contratos_multa` float NOT NULL,
+  `contratos_desconto` float NOT NULL,
+  `contratos_cep` char(9) NOT NULL,
+  `contratos_endereco` varchar(90) NOT NULL,
+  `contratos_num` char(6) NOT NULL,
+  `contratos_comp` varchar(25) NOT NULL,
+  `contratos_bairro` varchar(45) NOT NULL,
+  `contratos_cidade` varchar(45) NOT NULL,
+  `contratos_uf` char(2) NOT NULL,
+  `contratos_garantia` varchar(25) NOT NULL,
+  `contratos_id_fiad` varchar(25) NOT NULL,
+  `contratos_caucao_tipo` varchar(25) NOT NULL,
+  `contratos_seg_banco` varchar(25) NOT NULL,
+  `contratos_apolice` varchar(25) NOT NULL,
+  `contratos_seg_data_inicial` date NOT NULL,
+  `contratos_seg_data_final` date NOT NULL,
+  `contratos_seg_valor` float NOT NULL,
+  `contratos_seg_desc` varchar(45) NOT NULL,
+  `contratos_seg_Identificador` varchar(45) NOT NULL,
+  `contratos_seg_obs` text NOT NULL,
+  `contratos_obs` text NOT NULL,
+  `contratos_id_imov` varchar(25) NOT NULL,
+  `contratos_id_cond` varchar(25) NOT NULL,
+  `contratos_id_resi` varchar(25) NOT NULL,
+  `contratos_id_prop` varchar(25) NOT NULL,
+  PRIMARY KEY (`contratos_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- Extraindo dados da tabela `contratos`
+--
+
+INSERT INTO `contratos` (`contratos_id`, `contratos_tipo`, `contratos_data_inicial`, `contratos_duracao`, `contratos_data_final`, `contratos_dia_venc`, `contratos_juros`, `contratos_multa`, `contratos_desconto`, `contratos_cep`, `contratos_endereco`, `contratos_num`, `contratos_comp`, `contratos_bairro`, `contratos_cidade`, `contratos_uf`, `contratos_garantia`, `contratos_id_fiad`, `contratos_caucao_tipo`, `contratos_seg_banco`, `contratos_apolice`, `contratos_seg_data_inicial`, `contratos_seg_data_final`, `contratos_seg_valor`, `contratos_seg_desc`, `contratos_seg_Identificador`, `contratos_seg_obs`, `contratos_obs`, `contratos_id_imov`, `contratos_id_cond`, `contratos_id_resi`, `contratos_id_prop`) VALUES
+(11, 'Contrato de Aluguel', '0000-00-00', '', '0000-00-00', '', 0, 0, 0, '', '', '', '', '', '', '', 'Caução', '', 'Valor', '', '', '2016-04-01', '2016-05-31', 1700, '', '', '', '', '16', '', '7', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `fiadores`
+--
+
+CREATE TABLE IF NOT EXISTS `fiadores` (
+  `fiad_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fiad_cpf` char(19) NOT NULL,
+  `fiad_nome` varchar(90) NOT NULL,
+  `fiad_rg` char(12) NOT NULL,
+  `fiad_emissor` varchar(25) NOT NULL,
+  `fiad_expedicao` date NOT NULL,
+  `fiad_sexo` varchar(25) NOT NULL,
+  `fiad_nasc` date NOT NULL,
+  `fiad_est_civil` varchar(25) NOT NULL,
+  `fiad_nacional` varchar(25) NOT NULL,
+  `fiad_cep` char(9) NOT NULL,
+  `fiad_endereco` varchar(90) NOT NULL,
+  `fiad_num` char(6) NOT NULL,
+  `fiad_comp` varchar(25) NOT NULL,
+  `fiad_bairro` varchar(45) NOT NULL,
+  `fiad_cidade` varchar(45) NOT NULL,
+  `fiad_uf` char(2) NOT NULL,
+  `fiad_celular` char(14) NOT NULL,
+  `fiad_telefone` char(14) NOT NULL,
+  `fiad_email` varchar(45) NOT NULL,
+  `fiad_forma_pagto` varchar(25) NOT NULL,
+  `fiad_emp_nome` varchar(90) NOT NULL,
+  `fiad_emp_profissao` varchar(25) NOT NULL,
+  `fiad_emp_cargo` varchar(25) NOT NULL,
+  `fiad_emp_renda` float NOT NULL,
+  `fiad_emp_cep` char(9) NOT NULL,
+  `fiad_emp_endereco` varchar(90) NOT NULL,
+  `fiad_emp_num` char(6) NOT NULL,
+  `fiad_emp_comp` char(25) NOT NULL,
+  `fiad_emp_bairro` int(11) NOT NULL,
+  `fiad_emp_cidade` varchar(45) NOT NULL,
+  `fiad_emp_uf` char(2) NOT NULL,
+  `fiad_emp_comercial` char(14) NOT NULL,
+  `fiad_obs` text NOT NULL,
+  PRIMARY KEY (`fiad_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `imoveis`
+--
+
+CREATE TABLE IF NOT EXISTS `imoveis` (
+  `imov_id` int(11) NOT NULL AUTO_INCREMENT,
+  `imov_tipo` varchar(25) NOT NULL,
+  `imov_val_aluguel` float NOT NULL,
+  `imov_val_taxa` float NOT NULL,
+  `imov_val_venda` float NOT NULL,
+  `imov_tipo_taxa` varchar(25) NOT NULL,
+  `imov_cep` char(9) NOT NULL,
+  `imov_endereco` varchar(90) NOT NULL,
+  `imov_num` char(6) NOT NULL,
+  `imov_comp` varchar(25) NOT NULL,
+  `imov_bairro` varchar(45) NOT NULL,
+  `imov_cidade` varchar(45) NOT NULL,
+  `imov_uf` char(2) NOT NULL,
+  `imov_cartorio` varchar(45) NOT NULL,
+  `imov_matricula` varchar(45) NOT NULL,
+  `imov_bloco` varchar(15) NOT NULL,
+  `imov_apto` varchar(15) NOT NULL,
+  `imov_obs` text NOT NULL,
+  `imov_status` varchar(25) NOT NULL,
+  `imov_id_capt` varchar(25) NOT NULL,
+  `imov_id_prop` varchar(25) NOT NULL,
+  `imov_id_bene` varchar(25) NOT NULL,
+  `imov_id_cond` varchar(25) NOT NULL,
+  `imov_id_cont` varchar(10) NOT NULL,
+  PRIMARY KEY (`imov_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+
+--
+-- Extraindo dados da tabela `imoveis`
+--
+
+INSERT INTO `imoveis` (`imov_id`, `imov_tipo`, `imov_val_aluguel`, `imov_val_taxa`, `imov_val_venda`, `imov_tipo_taxa`, `imov_cep`, `imov_endereco`, `imov_num`, `imov_comp`, `imov_bairro`, `imov_cidade`, `imov_uf`, `imov_cartorio`, `imov_matricula`, `imov_bloco`, `imov_apto`, `imov_obs`, `imov_status`, `imov_id_capt`, `imov_id_prop`, `imov_id_bene`, `imov_id_cond`, `imov_id_cont`) VALUES
+(4, 'Aluguel', 1.3, 8, 0, 'Porcentagem', '01511-001', 'Rua Conselheiro Furtado', '1401', 'Apto 41 e Vaga', 'Liberdade', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '4', '4', '', ''),
+(5, 'Aluguel', 550, 8, 0, 'Porcentagem', '08040-370', 'Rua Faveira do Mato', '333', 'Casa 02', 'Jardim Planalto', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '9', '9', '', ''),
+(6, 'Aluguel', 502, 10, 0, 'Porcentagem', '08040-370', 'Rua Faveira do Mato', '333', 'Casa 01', 'Jardim Planalto', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '9', '9', '', ''),
+(7, 'Aluguel', 3120, 8, 0, 'Porcentagem', '01510-001', 'Rua da Glória', '935/93', '', 'Liberdade', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '5', '5', '', ''),
+(9, 'Aluguel', 3500, 8, 0, 'Porcentagem', '01451-001', 'Avenida Brigadeiro Faria Lima', '1768', 'Cj. 6 A', 'Jardim Paulistano', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '7', '7', '', ''),
+(10, 'Aluguel', 3000, 8, 0, 'Porcentagem', '01451-907', 'Avenida Brigadeiro Faria Lima', '1912', 'Cj. 6 H', 'Jardim Paulistano', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '7', '7', '', ''),
+(11, 'Aluguel', 3500, 8, 0, 'Porcentagem', '03636-100', 'Avenida Amador Bueno da Veiga', '1230', '605/606', 'Penha de França', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '11', '11', '', ''),
+(12, 'Aluguel', 0, 8, 0, 'Porcentagem', '04005-000', 'Rua Abílio Soares', '121', 'Apto 112', 'Paraíso', 'São Paulo', 'SP', '', '', '', '', '', 'Disponível', '11', '6', '6', '', ''),
+(13, 'Aluguel', 1127, 8, 0, 'Porcentagem', '01451-001', 'Avenida Brigadeiro Faria Lima', '1478', 'Cj. 912', 'Jardim Paulistano', 'São Paulo', 'SP', '', '', '', '', '', 'Disponível', '11', '7', '7', '', ''),
+(14, 'Aluguel', 1700, 8, 0, 'Porcentagem', '01004-000', 'Rua Barão de Paranapiacaba', '28', '', 'Sé', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '6', '6', '', ''),
+(15, 'Aluguel', 1500, 8, 0, 'Porcentagem', '03618-030', 'Rua Dona Rosa Santana', '133', '', 'Vila Marieta', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '8', '8', '', ''),
+(16, 'Aluguel', 15000, 8, 0, 'Porcentagem', '01004-000', 'Rua Barão de Paranapiacaba', '30', '', 'Sé', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '6', '6', '', ''),
+(17, 'Aluguel', 1200, 8, 0, 'Porcentagem', '03673-000', 'Rua Pinheiro de Ulhoa Cintra', '539', '', 'Jardim Popular', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '8', '8', '', ''),
+(18, 'Aluguel', 1560, 8, 0, 'Porcentagem', '01511-001', 'Rua Conselheiro Furtado', '1401', 'Apto 23', 'Liberdade', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '4', '4', '', ''),
+(19, 'Aluguel', 615, 8, 0, 'Porcentagem', '03650-040', 'Rua Araurari', '141', 'Fundos', 'Vila Esperança', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '8', '8', '', ''),
+(20, 'Aluguel', 700, 8, 0, 'Porcentagem', '03650-040', 'Rua Araurari', '141', 'Frente', 'Vila Esperança', 'São Paulo', 'SP', '', '', '', '', '', 'Indisponivel', '11', '8', '8', '', ''),
+(21, 'Aluguel', 1300, 10, 0, 'Porcentagem', '09210-380', 'Rua Acre', '85', '', 'Vila São Pedro', 'Santo André', 'SP', '', '', '01', 'Apto 104', '', 'Indisponivel', '11', '10', '10', '', ''),
+(23, 'Adm. Condomínio', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', 'BL-01', 'APTO-01', '', '', '', '', '', '9', '7'),
+(25, 'Adm. Condomínio', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', 'BL-02', '111', '', '', '', '', '', '14', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `lancamentos`
+--
+
+CREATE TABLE IF NOT EXISTS `lancamentos` (
+  `lanc_id` int(11) NOT NULL AUTO_INCREMENT,
+  `lanc_data_lanc` date NOT NULL,
+  `lanc_tipo` varchar(25) NOT NULL,
+  `lanc_desc` varchar(90) NOT NULL,
+  `lanc_data_venc` date NOT NULL,
+  `lanc_data_pagto` date DEFAULT NULL,
+  `lanc_valor` float NOT NULL,
+  `lanc_boleto_num` varchar(150) NOT NULL,
+  `lanc_boleto_emissao` date DEFAULT NULL,
+  `lanc_id_imov` varchar(150) DEFAULT NULL,
+  `lanc_id_cond` varchar(10) NOT NULL,
+  PRIMARY KEY (`lanc_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=161 ;
+
+--
+-- Extraindo dados da tabela `lancamentos`
+--
+
+INSERT INTO `lancamentos` (`lanc_id`, `lanc_data_lanc`, `lanc_tipo`, `lanc_desc`, `lanc_data_venc`, `lanc_data_pagto`, `lanc_valor`, `lanc_boleto_num`, `lanc_boleto_emissao`, `lanc_id_imov`, `lanc_id_cond`) VALUES
+(4, '2016-04-13', 'Receita', 'Aluguel', '2016-04-25', NULL, 900, '0000405786093417723', '2016-04-25', '', '9'),
+(5, '2016-04-13', 'Despesa', 'Agua', '2016-04-11', '2016-04-28', 500, '0002034010234010340', NULL, '', '9'),
+(6, '2016-04-16', 'Despesa', 'Gás', '2016-04-20', '2016-04-28', 3500, '11112034010234010340', NULL, '', '9'),
+(7, '2016-04-16', 'Receita', 'Condôminos Pagod', '2016-04-11', NULL, 73450, '132148647878787878', NULL, '', '9'),
+(8, '2016-04-06', 'Despesa', 'hilkbhibh', '2016-04-22', '2016-04-28', 100, '987812132154878788', NULL, '19', ''),
+(10, '2016-04-20', 'Despesa', 'Teste 02', '2016-04-25', '2016-04-28', 500, '121187897978978979', NULL, '', '23'),
+(158, '2016-04-28', 'Receita', 'Boleto manual teste', '2016-05-03', '2016-05-02', 502.95, '23790.21104 60001.234560 78052.181019 1 67830000050295', '2016-04-28', NULL, '23'),
+(159, '2016-04-28', 'Receita', 'Boleto manual teste', '2016-05-03', NULL, 102.95, '03399.55551 55550.000016 23456.789017 8 67830000010295', '2016-04-28', '19', ''),
+(160, '2016-04-29', 'Receita', 'Boleto manual teste', '2016-05-04', NULL, 502.95, '23790.21104 60001.234560 78052.181019 4 67840000050295', '2016-04-29', NULL, '23');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `proprietarios`
+--
+
+CREATE TABLE IF NOT EXISTS `proprietarios` (
+  `prop_id` int(11) NOT NULL AUTO_INCREMENT,
+  `prop_cpf` char(19) NOT NULL,
+  `prop_nome` varchar(90) NOT NULL,
+  `prop_rg` char(12) NOT NULL,
+  `prop_emissor` varchar(25) NOT NULL,
+  `prop_expedicao` date NOT NULL,
+  `prop_sexo` varchar(25) NOT NULL,
+  `prop_nasc` date NOT NULL,
+  `prop_est_civil` varchar(25) NOT NULL,
+  `prop_nacional` varchar(25) NOT NULL,
+  `prop_cep` char(9) NOT NULL,
+  `prop_endereco` varchar(90) NOT NULL,
+  `prop_num` char(6) NOT NULL,
+  `prop_comp` varchar(25) NOT NULL,
+  `prop_bairro` varchar(45) NOT NULL,
+  `prop_cidade` varchar(445) NOT NULL,
+  `prop_uf` char(2) NOT NULL,
+  `prop_celular` char(14) NOT NULL,
+  `prop_telefone` char(14) NOT NULL,
+  `prop_comercial` char(14) NOT NULL,
+  `prop_email` varchar(45) NOT NULL,
+  `prop_forma_pagto` varchar(25) NOT NULL,
+  `prop_obs` text NOT NULL,
+  PRIMARY KEY (`prop_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- Extraindo dados da tabela `proprietarios`
+--
+
+INSERT INTO `proprietarios` (`prop_id`, `prop_cpf`, `prop_nome`, `prop_rg`, `prop_emissor`, `prop_expedicao`, `prop_sexo`, `prop_nasc`, `prop_est_civil`, `prop_nacional`, `prop_cep`, `prop_endereco`, `prop_num`, `prop_comp`, `prop_bairro`, `prop_cidade`, `prop_uf`, `prop_celular`, `prop_telefone`, `prop_comercial`, `prop_email`, `prop_forma_pagto`, `prop_obs`) VALUES
+(4, '050.177.098-43', 'Teresa Murano Tortorelli', '3268175', 'SSP/SP', '0000-00-00', 'Feminino', '0000-00-00', 'Casado', '', '01321-000', 'Rua Martiniano de Carvalho', '880', 'Apto  90', 'Bela Vista', 'São Paulo', 'SP', '(11)9993-32115', '(11)2893-9166_', '', '', 'Dinheiro', ''),
+(5, '008.072.738-72', 'Pedro Murano', '2152411', 'SSP/SP', '0000-00-00', 'Masculino', '0000-00-00', 'Casado', '', '01256-030', 'Rua Duartina', '439', '', 'Sumaré', 'São Paulo', 'SP', '(11)9815-11114', '(11)3672-4919_', '', '', 'Dinheiro', ''),
+(6, '172.573.758-28', 'Eunice Forte Di Pardi', '2745278', 'SSP/SP', '0000-00-00', 'Feminino', '0000-00-00', 'Casado', '', '01529-020', 'Rua Loureiro da Cruz', '370', 'Apto 71', 'Aclimação', 'São Paulo', 'SP', '(11)9933-29755', '(11)3208-4443_', '', '', 'Dinheiro', ''),
+(7, '754.706.758-15', 'Maria Angela Fornoni Candia', '3821813', 'SSP/SP', '0000-00-00', 'Feminino', '0000-00-00', 'Casado', '', '05015-000', 'Rua Ministro Godói', '679', 'Apto 233', 'Perdizes', 'São Paulo', 'SP', '(11)9834-57932', '(11)3673-3869_', '', 'macandia@uol.com.br', 'Dinheiro', ''),
+(8, '003.274.698-97', 'Elyany Cornélio Cancino', '115938631', 'SSP/SP', '0000-00-00', 'Feminino', '0000-00-00', 'Casado', '', '03626-080', 'Rua Guaravera', '199', '', 'Vila Domitila', 'São Paulo', 'SP', '(11)9989-28891', '(11)2957-5794_', '', '', 'Dinheiro', ''),
+(9, '834.668.834-00', 'Espólio - Carlos Eugênio Ferreira da Silva', '11840712', 'SSP/SP', '0000-00-00', 'Masculino', '0000-00-00', 'Casado', '', '08246-050', 'Rua Jiparaná', '464', '', 'Parada XV de Novembro', 'São Paulo', 'SP', '(11)9999-99991', '(11)9999-99999', '', '', 'Dinheiro', ''),
+(10, '263.863.098-55', 'Ildo de Paula Junior', '271902388', 'SSP/SP', '0000-00-00', 'Masculino', '0000-00-00', 'Casado', '', '31330-670', 'Rua Professor Domício Murta', '121', 'Apto 601 A', 'Ouro Preto', 'Belo Horizonte', 'MG', '(11)9810-99905', '(11)4883-1080_', '', '', 'Dinheiro', ''),
+(11, '810.955.468-72', 'Adolfo Fratazzi', '6176227', 'SSP/SP', '0000-00-00', 'Masculino', '0000-00-00', 'Casado', '', '03618-100', 'Rua Axoxé', '18', '', 'Vila Marieta', 'São Paulo', 'SP', '(11)9978-92509', '(11)2958-2710_', '', 'arkm@terra.com.br', 'Dinheiro', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `residentes`
+--
+
+CREATE TABLE IF NOT EXISTS `residentes` (
+  `resi_id` int(11) NOT NULL AUTO_INCREMENT,
+  `resi_cpf` char(19) NOT NULL,
+  `resi_nome` varchar(90) NOT NULL,
+  `resi_rg` char(12) NOT NULL,
+  `resi_emissor` varchar(25) NOT NULL,
+  `resi_expedicao` date NOT NULL,
+  `resi_sexo` varchar(25) NOT NULL,
+  `resi_nasc` date NOT NULL,
+  `resi_est_civil` varchar(25) NOT NULL,
+  `resi_nacional` varchar(25) NOT NULL,
+  `resi_cep` char(9) NOT NULL,
+  `resi_endereco` varchar(90) NOT NULL,
+  `resi_num` char(6) NOT NULL,
+  `resi_comp` varchar(25) NOT NULL,
+  `resi_bairro` varchar(45) NOT NULL,
+  `resi_cidade` varchar(45) NOT NULL,
+  `resi_uf` char(2) NOT NULL,
+  `resi_celular` char(14) NOT NULL,
+  `resi_telefone` char(14) NOT NULL,
+  `resi_email` varchar(45) NOT NULL,
+  `resi_forma_pagto` varchar(25) NOT NULL,
+  `resi_emp_nome` varchar(90) NOT NULL,
+  `resi_emp_profissao` varchar(25) NOT NULL,
+  `resi_emp_cargo` varchar(25) NOT NULL,
+  `resi_emp_renda` float NOT NULL,
+  `resi_emp_cep` char(9) NOT NULL,
+  `resi_emp_endereco` varchar(90) NOT NULL,
+  `resi_emp_num` char(6) NOT NULL,
+  `resi_emp_comp` varchar(25) NOT NULL,
+  `resi_emp_bairro` varchar(45) NOT NULL,
+  `resi_emp_cidade` varchar(45) NOT NULL,
+  `resi_emp_uf` char(2) NOT NULL,
+  `resi_emp_comercial` char(14) NOT NULL,
+  `resi_obs` text NOT NULL,
+  PRIMARY KEY (`resi_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Extraindo dados da tabela `residentes`
+--
+
+INSERT INTO `residentes` (`resi_id`, `resi_cpf`, `resi_nome`, `resi_rg`, `resi_emissor`, `resi_expedicao`, `resi_sexo`, `resi_nasc`, `resi_est_civil`, `resi_nacional`, `resi_cep`, `resi_endereco`, `resi_num`, `resi_comp`, `resi_bairro`, `resi_cidade`, `resi_uf`, `resi_celular`, `resi_telefone`, `resi_email`, `resi_forma_pagto`, `resi_emp_nome`, `resi_emp_profissao`, `resi_emp_cargo`, `resi_emp_renda`, `resi_emp_cep`, `resi_emp_endereco`, `resi_emp_num`, `resi_emp_comp`, `resi_emp_bairro`, `resi_emp_cidade`, `resi_emp_uf`, `resi_emp_comercial`, `resi_obs`) VALUES
+(4, '988.527.765-53', 'Valdelino da Silva', '967297087', 'SSP/BA', '0000-00-00', 'Masculino', '0000-00-00', 'Solteiro', '', '01044-000', 'Rua Sete de Abril', '330', '', 'República', 'São Paulo', 'SP', '(11)9878-30084', '(11)3255-4686_', '', 'Dinheiro', 'CANTANHEDE PADARIA LTDA', 'Proprietário', 'Proprietário', 0, '01044-000', 'Rua Sete de Abril', '330', '', 'República', 'São Paulo', 'SP', '(11)3255-4686_', ''),
+(5, '092.197.138-96', 'Décio Pereira de Carvalho', '17561772', 'SSP/SP', '0000-00-00', 'Masculino', '0000-00-00', 'Casado', '', '01004-000', 'Rua Barão de Paranapiacaba', '28', '', 'Sé', 'São Paulo', 'SP', '(11)9813-12840', '(11)3105-5242_', 'deciocarvalho2013@gmail.com', 'Dinheiro', 'Carvalho Comércio de Carimbos, Placas e Chaves Ltda. ME', 'Proprietário', 'Proprietário', 0, '01004-000', 'Rua Barão de Paranapiacaba', '28', '', 'Sé', 'São Paulo', 'SP', '(11)3105-5242_', ''),
+(3, '301.559.908-96', 'Bruno Fernandes Ferreira', '291913702', 'SSP/SP', '2000-03-04', 'Masculino', '1982-02-02', 'Solteiro', '', '01511-001', 'Rua Conselheiro Furtado', '1401', 'Apto 41 e Vaga', 'Liberdade', 'São Paulo', 'SP', '(11)9826-69276', '(11)9811-29045', '', 'Boleto', 'Cyrbertecnica Instrumentação e Tecnologia', 'Engenheiro', 'Consultor Senior B', 3726, '04521-005', 'Rua Canário', '1111', '', 'Moema', 'São Paulo', 'SP', '(11)5542-5667_', ''),
+(6, '010.511.088-45', 'Flávio Loureiro Paes Junior', '8700270', 'SSP/SP', '0000-00-00', 'Masculino', '0000-00-00', 'Casado', '', '01451-000', 'Avenida Brigadeiro Faria Lima', '2000', 'Cj 912', 'Jardim Paulistano', 'São Paulo', 'SP', '(11)3814-4610_', '(11)3814-4610_', 'monumento1478@yahoo.com.br', 'Dinheiro', 'Condomínio Edifício Monumento', 'Economista', 'Economista', 0, '01451-000', 'Avenida Brigadeiro Faria Lima', '2000', 'Cj 912', 'Jardim Paulistano', 'São Paulo', 'SP', '(11)3814-4610_', ''),
+(7, '083.379.538-45', 'Maria Aparecida Soneghet Gomes', '11551533', 'SSP/SP', '0000-00-00', 'Feminino', '1963-08-24', 'Casado', '', '01451-000', 'Avenida Brigadeiro Faria Lima', '1768', 'Cj 6 A', 'Jardim Paulistano', 'São Paulo', 'SP', '(11)9993-68307', '(11)3031-0649_', 'pitty@gces.com.br', 'Dinheiro', 'G. C & S Corretora de Seguros S/C Ltda', 'Proprietária', 'Proprietária', 0, '01451-000', 'Avenida Brigadeiro Faria Lima', '1768', 'Cj 6 A', 'Jardim Paulistano', 'São Paulo', 'SP', '(11)3031-0649_', ''),
+(8, '008.297.816-68', 'Guido de Mendonça Chaves', '13520895', 'SSP/SP', '0000-00-00', 'Masculino', '1943-08-24', 'Casado', '', '01043-010', 'Rua Gabus Mendes', '29', 'Apto 90', 'República', 'São Paulo', 'SP', '(11)3815-5740_', '(11)3819-6128_', 'ircemil@uol.com.br', 'Dinheiro', 'Ircemil Exportak Comércio de Pedras Preciosas Ltda', 'Proprietário', 'Proprietário', 0, '01451-000', 'Avenida Brigadeiro Faria Lima', '1912', '6º', 'Jardim Paulistano', 'São Paulo', 'SP', '(11)3815-5740_', ''),
+(9, '269.526.588-31', 'Reinaldo Badiali Pinto', '40139707', 'SSP/SP', '0000-00-00', 'Masculino', '1982-02-13', 'Solteiro', '', '01317-000', 'Avenida Brigadeiro Luís Antônio', '487', '', 'Bela Vista', 'São Paulo', 'SP', '(11)3509-0300_', '(11)3509-0300_', 'wander@integravita.com.br', 'Dinheiro', 'Integra Vita Gestão de Benefícios e Corretora de Seguros Ltda', 'Proprietário', 'Proprietário', 0, '03636-100', 'Avenida Amador Bueno da Veiga', '1230', '6º Salas 605/606', 'Penha de França', 'São Paulo', 'SP', '(11)3509-0300_', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_nome` varchar(255) NOT NULL,
+  `user_cpf` varchar(11) NOT NULL,
+  `user_pass` varchar(25) NOT NULL,
+  `user_level` int(1) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_nome`, `user_cpf`, `user_pass`, `user_level`) VALUES
+(1, 'Mayco Vilefort', '12345678900', '123456', 3);
